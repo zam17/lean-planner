@@ -12,6 +12,8 @@
         <% using (Html.BeginForm()) { %>
         OpenId:<%=Html.EditorFor(x => x.OpenIdIdentifier)%>
         <%= Html.Button("logon","Log On",HtmlButtonType.Submit) %>
+        <br />
+        <%= Html.ValidationMessageFor(x=>x.OpenIdIdentifier) %>
         <% } %>
     </div>
 
