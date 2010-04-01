@@ -1,0 +1,19 @@
+﻿#logon
+{
+    width: 25em;
+    height: 4.5em;
+    margin: auto;
+    
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.5em;
+}
+
+#logon div
+{
+    padding: 0.5em;
+    margin-bottom: 0.5em;
+}

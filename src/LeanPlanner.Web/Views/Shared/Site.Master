@@ -1,0 +1,31 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    
+    <%= Html.Script("http://ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js")%>
+    <%= Html.Script("http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js")%>
+    <%= Html.Script("http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js")%>
+    
+    <%= Html.Css("http://yui.yahooapis.com/2.8.0r4/build/reset/reset-min.css")%>
+    <%= Html.Css("http://yui.yahooapis.com/2.8.0r4/build/fonts/fonts-min.css")%>
+    <%= Html.Css("http://yui.yahooapis.com/2.8.0r4/build/base/base-min.css")%>  
+    
+    <%= Html.Css("http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/ui-darkness/jquery-ui.css")%>  
+    
+    <%= Html.Css("Site.css") %>
+</head>
+<body>    
+    <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+    
+    <script type="text/javascript">
+        // CFInstall.check();
+    </script>
+</body>
+</html>
