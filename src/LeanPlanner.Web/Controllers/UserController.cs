@@ -51,15 +51,7 @@ namespace LeanPlanner.Web.Controllers
 
         private User EnsureUser(Identifier claimedIdentifier, ClaimsResponse getExtension)
         {
-            var user = _repository.All<User>().SingleOrDefault(u => u.OpenIdIdentifier == claimedIdentifier.OriginalString);
-
-            if(user == null)
-            {
-                user = new User(claimedIdentifier.OriginalString);
-                _repository.Save(user);
-            }
-
-            return user;
+            
         }
 
         [HttpPost]
