@@ -1,19 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using DotNetOpenAuth.Messaging;
 using DotNetOpenAuth.OpenId;
 using DotNetOpenAuth.OpenId.Extensions.SimpleRegistration;
 using DotNetOpenAuth.OpenId.RelyingParty;
+using LeanPlanner.Data;
+using LeanPlanner.Domain.Entities;
 using LeanPlanner.Web.ViewModels;
 
 namespace LeanPlanner.Web.Controllers
 {
     public class UserController : Controller
     {
+        private IRepository _repository;
+
+        public UserController(IRepository repository)
+        {
+            _repository = repository;
+        }
+
         public ActionResult LogOn()
         {
             var openid = new OpenIdRelyingParty();
@@ -24,8 +31,9 @@ namespace LeanPlanner.Web.Controllers
                 switch (response.Status)
                 {
                     case AuthenticationStatus.Authenticated:
+                        var user = EnsureUser(response.ClaimedIdentifier, response.GetExtension<ClaimsResponse>());
                         FormsAuthentication.RedirectFromLoginPage(
-                            response.ClaimedIdentifier, false);
+                            user.OpenIdIdentifier, false);
                         break;
                     case AuthenticationStatus.Canceled:
                         ModelState.AddModelError("OpenIdIdentifier",
@@ -39,6 +47,19 @@ namespace LeanPlanner.Web.Controllers
             }
 
             return View();
+        }
+
+        private User EnsureUser(Identifier claimedIdentifier, ClaimsResponse getExtension)
+        {
+            var user = _repository.All<User>().SingleOrDefault(u => u.OpenIdIdentifier == claimedIdentifier.OriginalString);
+
+            if(user == null)
+            {
+                user = new User(claimedIdentifier.OriginalString);
+                _repository.Save(user);
+            }
+
+            return user;
         }
 
         [HttpPost]

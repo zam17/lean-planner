@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Db4objects.Db4o, Version=7.12.132.14217, Culture=neutral, PublicKeyToken=6199cd4f203aa8eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\Db4o\Db4objects.Db4o.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetOpenAuth, Version=3.4.2.10079, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\libs\DotNetOpenAuth\DotNetOpenAuth.dll</HintPath>
@@ -83,6 +87,16 @@
     <Content Include="Content\Site.css" />
     <Content Include="Views\Shared\Site.Master" />
     <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LeanPlanner.Data\LeanPlanner.Data.csproj">
+      <Project>{95D36ECF-3832-4027-A1F6-2411153ADE14}</Project>
+      <Name>LeanPlanner.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LeanPlanner.Domain\LeanPlanner.Domain.csproj">
+      <Project>{D7838BF8-F6A4-406D-94E3-5AC735A8D70C}</Project>
+      <Name>LeanPlanner.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
