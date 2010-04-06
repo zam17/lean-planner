@@ -49,8 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\EnsureUserCommand.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LeanPlanner.Data\LeanPlanner.Data.csproj">
+      <Project>{95D36ECF-3832-4027-A1F6-2411153ADE14}</Project>
+      <Name>LeanPlanner.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Factories\" />
