@@ -7,25 +7,23 @@ using LeanPlanner.Domain.Entities;
 
 namespace LeanPlanner.Domain.Commands
 {
-    public class EnsureUserCommand : Command<User>
+    public class EnsureUserCommand : Command
     {
         public EnsureUserCommand(IRepository repository) : base(repository)
         {
         }
 
-        protected override User DoWork()
+        protected override void DoWork()
         {
-            var user = Repository.All<User>().SingleOrDefault(u => u.OpenIdIdentifier == OpenIdIdentifierOriginalString);
+            var user = Repository.All<User>().SingleOrDefault(u => u.OpenIdIdentifier == OpenIdIdentifier);
 
             if (user == null)
             {
-                user = new User(OpenIdIdentifierOriginalString);
+                user = new User(OpenIdIdentifier);
                 Repository.Save(user);
             }
-
-            return user;
         }
 
-        public string OpenIdIdentifierOriginalString { get; set; }
+        public string OpenIdIdentifier { get; set; }
     }
 }

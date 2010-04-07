@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
+using LeanPlanner.Web.Infrastructure;
 
 namespace LeanPlanner.Web
 {
@@ -24,6 +25,10 @@ namespace LeanPlanner.Web
         {
             AreaRegistration.RegisterAllAreas();
             RegisterRoutes(RouteTable.Routes);
+
+            AutoMapperBootstrapper.ConfigureAutoMapper();
+            StructureMapBootstrapper.ConfigureStructureMap();
+            ControllerBuilder.Current.SetControllerFactory(new StructureMapControllerFactory());
         }
     }
 }
