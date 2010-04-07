@@ -1,13 +1,12 @@
-﻿using System;
-using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Security;
+using AutoMapper;
 using DotNetOpenAuth.Messaging;
 using DotNetOpenAuth.OpenId;
 using DotNetOpenAuth.OpenId.Extensions.SimpleRegistration;
 using DotNetOpenAuth.OpenId.RelyingParty;
 using LeanPlanner.Data;
-using LeanPlanner.Domain.Entities;
+using LeanPlanner.Domain.Commands;
 using LeanPlanner.Web.ViewModels;
 
 namespace LeanPlanner.Web.Controllers
@@ -31,9 +30,12 @@ namespace LeanPlanner.Web.Controllers
                 switch (response.Status)
                 {
                     case AuthenticationStatus.Authenticated:
-                        var user = EnsureUser(response.ClaimedIdentifier, response.GetExtension<ClaimsResponse>());
+
+                        var command = Mapper.Map<string,EnsureUserCommand>(response.ClaimedIdentifier.OriginalString);
+                        command.Execute();
+
                         FormsAuthentication.RedirectFromLoginPage(
-                            user.OpenIdIdentifier, false);
+                            response.ClaimedIdentifier.OriginalString, false);
                         break;
                     case AuthenticationStatus.Canceled:
                         ModelState.AddModelError("OpenIdIdentifier",
@@ -48,12 +50,7 @@ namespace LeanPlanner.Web.Controllers
 
             return View();
         }
-
-        private User EnsureUser(Identifier claimedIdentifier, ClaimsResponse getExtension)
-        {
-            
-        }
-
+        
         [HttpPost]
         public ActionResult LogOn(LogOnInputModel model)
         {
