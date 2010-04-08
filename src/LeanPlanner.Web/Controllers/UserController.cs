@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using System.Web.Security;
 using AutoMapper;
 using DotNetOpenAuth.Messaging;
@@ -7,17 +8,22 @@ using DotNetOpenAuth.OpenId.Extensions.SimpleRegistration;
 using DotNetOpenAuth.OpenId.RelyingParty;
 using LeanPlanner.Data;
 using LeanPlanner.Domain.Commands;
+using LeanPlanner.Domain.Entities;
+using LeanPlanner.Web.Infrastructure.Avatar;
 using LeanPlanner.Web.ViewModels;
+using LeanPlanner.Web.ViewModels.User;
 
 namespace LeanPlanner.Web.Controllers
 {
     public class UserController : Controller
     {
-        private IRepository _repository;
+        private readonly IRepository _repository;
+        private readonly IAvatarGenerator _avatarGenerator;
 
-        public UserController(IRepository repository)
+        public UserController(IRepository repository, IAvatarGenerator avatarGenerator)
         {
             _repository = repository;
+            _avatarGenerator = avatarGenerator;
         }
 
         public ActionResult LogOn()
@@ -73,6 +79,18 @@ namespace LeanPlanner.Web.Controllers
 
                 return request.RedirectingResponse.AsActionResult();
             }
+        }
+
+        [ChildActionOnly]
+        public ActionResult StatusWidget()
+        {
+            var user = _repository.All<User>().Single(x => x.OpenIdIdentifier == this.User.Identity.Name);
+
+            var viewModel = new UserStatusViewModel();
+            viewModel.DisplayName = user.OpenIdIdentifier;
+            viewModel.AvatarUrl = _avatarGenerator.GenerateUrl(viewModel.DisplayName);
+
+            return PartialView(viewModel);
         }
     }
 }
