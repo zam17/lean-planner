@@ -35,7 +35,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\libs\Db4o\Db4objects.Db4o.dll</HintPath>
     </Reference>
+    <Reference Include="StructureMap, Version=2.6.2.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\StructureMap\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -50,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\EnsureUserCommand.cs" />
+    <Compile Include="Entities\Project.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

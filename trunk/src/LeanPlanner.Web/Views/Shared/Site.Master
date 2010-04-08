@@ -25,7 +25,7 @@
     <asp:ContentPlaceHolder ID="MainContent" runat="server" />
     
     <script type="text/javascript">
-        // CFInstall.check();
+        CFInstall.check();
     </script>
 </body>
 </html>
