@@ -10,8 +10,11 @@ namespace LeanPlanner.Domain.Entities
         public User(string openIdIdentifier)
         {
             OpenIdIdentifier = openIdIdentifier;
+            DisplayName = "Unknown";
         }
 
         public string OpenIdIdentifier { get; private set; }
+
+        public string DisplayName { get; set; }
     }
 }

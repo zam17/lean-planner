@@ -87,8 +87,8 @@ namespace LeanPlanner.Web.Controllers
             var user = _repository.All<User>().Single(x => x.OpenIdIdentifier == this.User.Identity.Name);
 
             var viewModel = new UserStatusViewModel();
-            viewModel.DisplayName = user.OpenIdIdentifier;
-            viewModel.AvatarUrl = _avatarGenerator.GenerateUrl(viewModel.DisplayName);
+            viewModel.DisplayName = user.DisplayName;
+            viewModel.AvatarUrl = _avatarGenerator.GenerateUrl(user.OpenIdIdentifier);
 
             return PartialView(viewModel);
         }

@@ -10,16 +10,21 @@
         <div class="ui-widget-header ui-corner-all">Log On</div>
         
         <% using (Html.BeginForm()) { %>
-        OpenId:<%=Html.EditorFor(x => x.OpenIdIdentifier)%>
-        <%= Html.Button("logon","Log On",HtmlButtonType.Submit) %>
+        OpenId:
+        <br />
+        <%=Html.EditorFor(x => x.OpenIdIdentifier)%>
+        <br />
+        <%= Html.Button("logonButton","Log On",HtmlButtonType.Submit) %>
         <br />
         <%= Html.ValidationMessageFor(x=>x.OpenIdIdentifier) %>
         <% } %>
     </div>
+    
+    
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $("button[name='logon']").button();
+            $("button").button();
         });
     </script>
 </asp:Content>

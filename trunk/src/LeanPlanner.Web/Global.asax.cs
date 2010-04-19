@@ -19,6 +19,7 @@ namespace LeanPlanner.Web
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
 
+            routes.IgnoreRoute("favicon.ico");
         }
 
         protected void Application_Start()

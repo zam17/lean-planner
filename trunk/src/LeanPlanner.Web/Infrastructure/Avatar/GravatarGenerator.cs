@@ -15,7 +15,7 @@ namespace LeanPlanner.Web.Infrastructure.Avatar
             {
                 builder.Append(data[i].ToString("x2"));
             }
-            builder.Append("?d=identicon");
+            builder.Append("?d=identicon&s=48");
             return builder.ToString();
         }
     }
