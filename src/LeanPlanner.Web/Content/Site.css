@@ -1,12 +1,15 @@
-﻿#logon
+﻿html, body, th, td
 {
-    width: 25em;
-    height: 4.5em;
+    font-size: 11px;
+}
+
+#logon
+{
+    width: 25em;    
     margin: auto;
     
     position: absolute;
-    top: 0;
-    bottom: 0;
+    top: 5em;    
     left: 0;
     right: 0;
     padding: 0.5em;
@@ -16,4 +19,50 @@
 {
     padding: 0.5em;
     margin-bottom: 0.5em;
+}
+
+#logon input
+{
+    width: 99%;
+    margin-bottom: 3px;
+}
+
+#header
+{
+    overflow: hidden;
+}
+
+#header h1
+{
+    float: left;
+}
+
+#statusWidget
+{
+    float: right;
+}
+
+#menu
+{
+    padding: 3px;
+}
+
+#menu li
+{
+    display: inline;
+}
+
+#mainContent
+{
+    padding: 15px;
+}
+
+#toolbar
+{
+    padding: 10px 4px;
+}
+
+#toolbarTitle
+{
+    margin-right: 30px;
 }
